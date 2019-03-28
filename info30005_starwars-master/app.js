@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require('express')
 var app = express();
 
 var bodyParser = require('body-parser');
@@ -19,7 +19,7 @@ var people = [
         "https://swapi.co/api/films/6/",
         "https://swapi.co/api/films/3/",
         "https://swapi.co/api/films/1/",
-        "https://swapi.co/api/films/7/"
+        "https://swapi.co/api/films/7/"]
     },
     {
         "name": "C-3PO",
@@ -37,7 +37,7 @@ var people = [
         "https://swapi.co/api/films/4/",
         "https://swapi.co/api/films/6/",
         "https://swapi.co/api/films/3/",
-        "https://swapi.co/api/films/1/"
+        "https://swapi.co/api/films/1/"]
      },
      {
         "name": "R2-D2",
@@ -56,7 +56,7 @@ var people = [
         "https://swapi.co/api/films/6/",
         "https://swapi.co/api/films/3/",
         "https://swapi.co/api/films/1/",
-        "https://swapi.co/api/films/7/"
+        "https://swapi.co/api/films/7/"]
      },
      {
         "name": "Darth Vader",
@@ -72,7 +72,7 @@ var people = [
         "https://swapi.co/api/films/2/",
         "https://swapi.co/api/films/6/",
         "https://swapi.co/api/films/3/",
-        "https://swapi.co/api/films/1/"
+        "https://swapi.co/api/films/1/"]
      },
      {
         "name": "Leia Organa",
@@ -89,13 +89,9 @@ var people = [
         "https://swapi.co/api/films/6/",
         "https://swapi.co/api/films/3/",
         "https://swapi.co/api/films/1/",
-        "https://swapi.co/api/films/7/"
-     }
-     ];
+        "https://swapi.co/api/films/7/"]
+     }];
 
 app.get('/',function(req,res){
     res.send("main route");
-
-app.listen(3000,function(req,res){
-    console.log('Express listening on port 3000');
 });
