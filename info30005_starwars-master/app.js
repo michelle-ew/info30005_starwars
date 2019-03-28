@@ -4,6 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+// Whole array, with index
 var people = [
     {  "name": "Luke Skywalker",
         "height": "172",
@@ -94,4 +95,68 @@ var people = [
 
 app.get('/',function(req,res){
     res.send("main route");
+});
+
+// Return all the values in the array
+app.get('/api',function(req,res){
+	res.send(people);
+});
+
+// Return a specific object based on a particular ID (param)
+app.get('/api/:id',function(req,res){    // requesting an ID, params = name of ID
+	res.send(people[req.params.id]);
+});
+
+// Add a new person to the array
+app.post('/api', function(req,res){
+    var newperson = {
+        "name": req.body.name,
+        "height": req.body.height,
+        "mass": req.body.mass,
+        "hair_color": req.body.hair_color,
+        "skin_color": req.body.skin_color,
+        "eye_color": req.body.skin_color,
+        "birth_year": req.body.birth_year,
+        "gender": req.body.gender,
+        "homeworld": req.body.homeworld,
+        "films": req.body.films
+    };
+    people.push(newperson)
+    res.send(newperson)
+})
+
+// Update data from an existing person (any of the attributes)
+app.post('/api/:id', function(req,res) {
+    if(req.params.id<=people.length-1){  // check if ID exists
+        var newperson = {
+            "name": req.body.name,
+            "height": req.body.height,
+            "mass": req.body.mass,
+            "hair_color": req.body.hair_color,
+            "skin_color": req.body.skin_color,
+            "eye_color": req.body.skin_color,
+            "birth_year": req.body.birth_year,
+            "gender": req.body.gender,
+            "homeworld": req.body.homeworld,
+            "films": req.body.films
+        };
+		people[req.params.id]=newperson;
+		res.send(newperson);
+    } else {
+		res.send("Sorry, ID not found");	// if ID not in DB, return "ID not found"
+	}
+})
+
+// Delete an existing person from the array based on a name provided as input (param)
+app.delete('/api/delete/:id', function(req,res) {
+    if(req.params.id<=people.length-1){
+        people.splice(req.params.id,1);
+    }
+    res.send(people);
+})
+
+
+// Start the server
+app.listen(3000,function(req,res){
+	console.log('Express listening on port 3000');
 });
